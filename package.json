@@ -1,0 +1,26 @@
+{
+  "name": "atividade03formulariofornecedor",
+  "version": "1.0.0",
+  "description": "Processamento de requisições do tipo POST com validação dos dados do formulário + MENU + Tela de LOGIN (sem validação).",
+  "homepage": "https://github.com/samuellimabaixista-ops/atividade03FormularioFornecedor#readme",
+  "bugs": {
+    "url": "https://github.com/samuellimabaixista-ops/atividade03FormularioFornecedor/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samuellimabaixista-ops/atividade03FormularioFornecedor.git"
+  },
+  "license": "ISC",
+  "author": "Samuel Correia Lima",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0"
+  }
+}
