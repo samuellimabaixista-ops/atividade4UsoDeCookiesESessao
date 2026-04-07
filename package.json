@@ -1,7 +1,7 @@
 {
-  "name": "atividade03formulariofornecedor",
+  "name": "atividadeFinalSistemaDeGerenciamentoDeBiblioteca",
   "version": "1.0.0",
-  "description": "Processamento de requisições do tipo POST com validação dos dados do formulário + MENU + Tela de LOGIN (sem validação).",
+  "description": "Atividade Final Disciplina de Programação para Internet",
   "homepage": "https://github.com/samuellimabaixista-ops/atividade03FormularioFornecedor#readme",
   "bugs": {
     "url": "https://github.com/samuellimabaixista-ops/atividade03FormularioFornecedor/issues"
