@@ -51,13 +51,23 @@ app.get('/', estaAutenticado,(req, res) => {
                             <a class="nav-link" href="/login">LOGIN</a>
                         </li>   
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="produtos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                CADASTRO
+                            <a class="nav-link dropdown-toggle" href="livros" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                CADASTRO LIVROS
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/produtos">Cadastrar Produtos</a></li>
+                                <li><a class="dropdown-item" href="/produtos">Cadastrar Livros</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="/listaprodutos">Listar Produtos</a></li>    
+                                <li><a class="dropdown-item" href="/listalivros">Listar Livros</a></li>    
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="leitores" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                CADASTRO LEITORES
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/produtos">Cadastrar Leitores</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/listaleitores">Listar Leitores</a></li>    
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -105,13 +115,23 @@ app.get('/home', (req, res) => {
                             <a class="nav-link" href="/login">LOGIN</a>
                         </li>   
                         <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="produtos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="livros" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     CADASTRO
                                 </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/produtos">Cadastrar Produtos</a></li>
+                                        <li><a class="dropdown-item" href="/produtos">Cadastrar Livros</a></li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="/listaprodutos">Listar Produtos</a></li>    
+                                        <li><a class="dropdown-item" href="/listalivros">Listar Livros</a></li>    
+                                    </ul>
+                        </li>
+                          <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="leitores" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    CADASTRO
+                                </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="/produtos">Cadastrar Leitores</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="/listaleitores">Listar Leitores</a></li>    
                                     </ul>
                         </li>
                         <li class="nav-item">
@@ -131,52 +151,35 @@ app.get('/home', (req, res) => {
     res.end();
 });
 
-app.get('/produtos', estaAutenticado, (req, res) => {
+app.get('/livros', estaAutenticado, (req, res) => {
     res.write(`
         <html lang="pt-br">
             <head>
                 <meta charset = "UTF-8">
-                <title>Formulário de Cadastro de Produtos</title>
+                <title>Formulário de Cadastro de Livros</title>
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
             </head>
             <body> 
                 <div class = "container mt-5"> 
-                    <form method="POST" action="/produtos" class="row g-3">        
+                    <form method="POST" action="/livros" class="row g-3">        
                             <legend><h3>
-                                Cadastro de Produtos:</h3>
+                                Cadastro de Livros:</h3>
                             </legend>
                         <div class="col-md-6">
-                            <label for="inputCodigoBarras" class="form-label">Código de Barras</label>
-                            <input type="text" class="form-control" id="codigoBarras" name="codigoBarras">
+                            <label for="inputtitulo" class="form-label">Título do Livro</label>
+                            <input type="text" class="form-control" id="titulo" name="titulo">
                         </div>
                         <div class="col-md-6">
-                            <label for="inputdescricaoProduto" class="form-label">Descrição Produto</label>
-                            <input type="text" class="form-control" id="descricaoProduto" name="descricaoProduto">
+                            <label for="inputautor" class="form-label">Nome do Autor:</label>
+                            <input type="text" class="form-control" id="autor" name="autor">
                         </div>
                         <div class="col-md-6">
-                            <label for="inputprecoCusto" class="form-label">Preço de Custo</label>
-                            <input type="number" class="form-control" id="precoCusto" name="precoCusto">
+                            <label for="inputcodigo" class="form-label">Código ISBN/ Identificação:</label>
+                            <input type="number" class="form-control" id="codigo" name="codigo">
                         </div>
-                        <div class="col-md-6">
-                            <label for="inputprecoVenda" class="form-label">Preço de Venda</label>
-                            <input type="number" class="form-control" id="precoVenda" name="precoVenda">
-                        </div>
-                        
-                        <div class="col-md-6">
-                            <label for="inputdataValidade" class="form-label">Data Validade</label>
-                            <input type="text" class="form-control" id="dataValidade" name="dataValidade">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputquantidadeEstoque" class="form-label">Quantidade Estoque</label>
-                            <input type="text" class="form-control" id="quantidadeEstoque" name="quantidadeEstoque">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputnomeFabricante" class="form-label">Nome Fabricante</label>
-                            <input type="text" class="form-control" id="nomeFabricante" name="nomeFabricante">
-                        </div>
-                        
+                                           
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
+                            <button type="submit" class="btn btn-primary">Cadastrar Livro</button>
                         </div>
                     </form>
                </div> 
@@ -188,116 +191,64 @@ app.get('/produtos', estaAutenticado, (req, res) => {
     res.end();
 
 });
-app.post("/produtos", estaAutenticado, (requisicao, resposta) => {
+app.post("/livros", estaAutenticado, (requisicao, resposta) => {
 
-    const codigoBarras=requisicao.body.codigoBarras;
-    const descricaoProduto=requisicao.body.descricaoProduto;
-    const precoCusto=requisicao.body.precoCusto;
-    const precoVenda=requisicao.body.precoVenda;
-    const dataValidade = requisicao.body.dataValidade;
-    const quantidadeEstoque=requisicao.body.quantidadeEstoque;
-    const nomeFabricante=requisicao.body.nomeFabricante;
-   
-       
-    if(!codigoBarras || !descricaoProduto || !precoCusto || !precoVenda || !dataValidade || !quantidadeEstoque || !nomeFabricante) {
+    const titulo=requisicao.body.titulo;
+    const autor=requisicao.body.autor;
+    const codigo=requisicao.body.codigo;
+         
+    if(!titulo || !autor || !codigo) {
          let html= `  
             <html lang="pt-br">
                 <head>
                     <meta charset = "UTF-8">
-                    <title>Formulário de Produtos</title>
+                    <title>Formulário de Livros</title>
                     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
                 </head>
                 <body> 
                     <div class = "container mt-5"> 
-                        <form method="POST" action="/produtos" class="row g-3">        
+                        <form method="POST" action="/livros" class="row g-3">        
                                 <legend><h3>
-                                    Cadastro de Produtos:</h3>
+                                    Cadastro de Livros:</h3>
                                 </legend>
 
                              <div class="col-md-6">
-                                <label for="inputCodigoBarras" class="form-label">Código de Barras</label>
-                                <input type="text" class="form-control" id="codigoBarras" name="codigoBarras" value="${codigoBarras}">`;
+                                <label for="inputtitulo" class="form-label">Título do Livro</label>
+                                <input type="text" class="form-control" id="titulo" name="titulo" value="${titulo}">`;
                    
-                                if(!codigoBarras){
+                                if(!titulo){
                                     html+= `<div class="alert alert-danger" role="alert">
-                                                Por Favor, insira os dados do Código de Barras!
+                                                Por Favor, insira o título do livro!
                                             </div>`;
                                 }
                                 html+= `
                             </div>
 
                              <div class="col-md-6">
-                                <label for="inputdescricaoProduto" class="form-label">Descrição Produto</label>
-                                <input type="text" class="form-control" id="descricaoProduto" name="descricaoProduto" value="${descricaoProduto}">`;
+                                <label for="inputautor" class="form-label">Nome do Autor</label>
+                                <input type="text" class="form-control" id="autor" name="autor" value="${autor}">`;
                             
-                                if(!descricaoProduto){
+                                if(!autor){
                                     html+= `<div class="alert alert-danger" role="alert">
-                                                Por Favor, insira a descrição do produto!
+                                                Por Favor, insira o nome do Autor!
                                             </div>`;
                                 } 
                                 html+=`
                             </div>
 
                             <div class="col-md-6">
-                                <label for="inputprecoCusto" class="form-label">Preço de Custo</label>
-                                <input type="number" class="form-control" id="precoCusto" name="precoCusto" value="${precoCusto}">`;
+                                <label for="inputcodigo" class="form-label">Código ISBN/ Identificação:</label>
+                                <input type="text" class="form-control" id="codigo" name="codigo" value="${codigo}">`;
 
-                                 if(!precoCusto){
+                                 if(!codigo){
                                     html+= `<div class="alert alert-danger" role="alert">
-                                                Por Favor, insira o preço de custo!
+                                                Por Favor, insira o Código do Livro!
                                             </div>`;
-                                } 
+                                }
                                 html+=`
                             </div>
-
-                             <div class="col-md-6">
-                                <label for="inputprecoVenda" class="form-label">Preço de Venda</label>
-                                <input type="number" class="form-control" id="precoVenda" name="precoVenda" value="${precoVenda}">`;
-
-                                 if(!precoVenda){
-                                    html+= `<div class="alert alert-danger" role="alert">
-                                                Por Favor, insira o preço de venda!
-                                            </div>`;
-                                } 
-                                html+=`
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="inputdataValidade" class="form-label">Data Validade</label>
-                                <input type="text" class="form-control" id="dataValidade" name="dataValidade" value="${dataValidade}">`;
-
-                                if(!dataValidade){
-                                    html+= `<div class="alert alert-danger" role="alert">
-                                                Por Favor, insira a data de validade!
-                                            </div>`;
-                                } 
-                                html+=`
-                             </div>
-
-                            <div class="col-md-6">
-                                <label for="inputquantidadeEstoque" class="form-label">Quantidade Estoque</label>
-                                <input type="text" class="form-control" id="quantidadeEstoque" name="quantidadeEstoque" value="${quantidadeEstoque}">`;
-                                
-                                 if(!quantidadeEstoque){
-                                    html+= `<div class="alert alert-danger" role="alert">
-                                                Por Favor, insira a quantidade de estoque!
-                                            </div>`;
-                                } 
-                                html+=`
-                            </div>
-
-                        <div class="col-md-6">
-                            <label for="inputnomeFabricante" class="form-label">Nome Fabricante</label>
-                            <input type="text" class="form-control" id="nomeFabricante" name="nomeFabricante" value="${nomeFabricante}">`;
-                            
-                            if(!nomeFabricante){
-                                    html+= `<div class="alert alert-danger" role="alert">
-                                                Por Favor, insira o nome do fabricante!
-                                            </div>`;
-                                } 
-                                html+=`
-                            </div>
-                           
+                                                 
+                                                                         
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Cadastrar</button>
                             </div>
@@ -312,28 +263,24 @@ app.post("/produtos", estaAutenticado, (requisicao, resposta) => {
         resposta.end();
     }
     else {
-            listaprodutos.push(
+            listalivros.push(
                     {
-                       "codigoBarras":codigoBarras,
-                        "descricaoProduto":descricaoProduto,
-                        "precoCusto":precoCusto,
-                        "precoVenda":precoVenda,
-                        "dataValidade":dataValidade,
-                        "quantidadeEstoque":quantidadeEstoque,
-                        "nomeFabricante":nomeFabricante,
-                      
+                       "titulo":titulo,
+                        "autor":autor,
+                        "codigo":codigo,
+                                            
                     }
              );
-            resposta.redirect("/listaprodutos");     
+            resposta.redirect("/listalivros");     
      }
     
 });
-app.get("/listaprodutos", estaAutenticado,(requisicao, resposta) => {
+app.get("/listalivros", estaAutenticado,(requisicao, resposta) => {
     resposta.write(`
          <html lang="pt-br">
             <head>
                 <meta charset = "UTF-8">
-                <title>Lista de Produtos</title>
+                <title>Lista de Livros</title>
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
             </head>
             <body>
@@ -341,35 +288,278 @@ app.get("/listaprodutos", estaAutenticado,(requisicao, resposta) => {
                     <table class="table table-success table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Código de Barras</th>
-                                <th scope="col">Descrição do Produto</th>
-                                <th scope="col">Preço de Custo</th>
-                                <th scope="col">Preço de Venda</th>
-                                <th scope="col">Data de Validade</th>
-                                <th scope="col">Quantidade de Estoque</th>
-                                <th scope="col">Nome do Fabricante</th>
+                                <th scope="col">Título do Livro</th>
+                                <th scope="col">Autor</th>
+                                <th scope="col">Código ISBN</th>
+                            </tr>
+                        </thead>
+                        <tbody> `);
+                            for(let i=0;i<listalivros.length;i++){
+                                const livros =listalivros[i];
+                                resposta.write(`
+                                    <tr>
+                                        <td>${livros.titulo}</td>
+                                        <td>${livros.autor}</td>
+                                        <td>${livros.codigo}</td>
+                                    </tr>`)
+                                <th scope="col">Lista de livros</th>
                                 
                             </tr>
                         </thead>
                         <tbody> `);
-                            for(let i=0;i<listaprodutos.length;i++){
-                                const produtos =listaprodutos[i];
+                            for(let i=0;i<listalivros.length;i++){
+                                const livros =listalivros[i];
                                 resposta.write(`
                                     <tr>
                                         <td>${i+1}</td>
-                                        <td>${produtos.codigoBarras}</td>
-                                        <td>${produtos.descricaoProduto}</td>
-                                        <td>${produtos.precoCusto}</td>
-                                        <td>${produtos.precoVenda}</td>
-                                        <td>${produtos.dataValidade}</td>
-                                        <td>${produtos.quantidadeEstoque}</td>
-                                        <td>${produtos.nomeFabricante}</td>
+                                        <td>${livros.codigo}</td>
+                                        <td>${livros.titulo}</td>
+                                        <td>${livros.autor}</td>
                                         
                                     </tr>`)
                             }
                         resposta.write(`    </tbody>
                                         </table>
-                                        <a href="/produtos" class="btn btn-primary">Adicionar Produto</a>
+                                        <a href="/produtos" class="btn btn-primary">Adicionar Livro</a>
+                                    </div>     
+            </body>
+             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        </html>  `);
+    resposta.end();
+});
+
+app.get('/leitores', estaAutenticado, (req, res) => {
+    res.write(`
+        <html lang="pt-br">
+            <head>
+                <meta charset = "UTF-8">
+                <title>Formulário de Cadastro de Leitores:</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+            </head>
+            <body> 
+                <div class = "container mt-5"> 
+                    <form method="POST" action="/leitores" class="row g-3">        
+                            <legend><h3>
+                                Cadastro de Leitores:</h3>
+                            </legend>
+                        <div class="col-md-6">
+                            <label for="inputnome" class="form-label">Nome do Leitor</label>
+                            <input type="text" class="form-control" id="nome" name="nome">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputcpf" class="form-label">Numero CPF ou Identificação:</label>
+                            <input type="text" class="form-control" id="cpf" name="cpf">
+                        </div>
+                         <div class="col-md-6">
+                            <label for="inputtelefone" class="form-label">Telefone para Contato:</label>
+                            <input type="text" class="form-control" id="telefone" name="telefone">
+                        </div>
+                         <div class="col-md-6">
+                            <label for="inputemprestimo" class="form-label">Data de Empréstimo:</label>
+                            <input type="text" class="form-control" id="emprestimo" name="emprestimo">
+                        </div>
+                         <div class="col-md-6">
+                            <label for="inputdevolucao" class="form-label">Data de Devolução:</label>
+                            <input type="text" class="form-control" id="devolucao" name="devolucao">
+                        </div>
+                         <div class="col-md-6">
+                            <label for="inputlivro" class="form-label">Nome do Livro:</label>
+                            <input type="text" class="form-control" id="livro" name="livro">
+                        </div>
+                        
+                         
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">Cadastrar Leitor</button>
+                        </div>
+                    </form>
+               </div> 
+               
+            </body>
+             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        </html>     
+        `);
+    res.end();
+
+});
+app.post("/leitores", estaAutenticado, (requisicao, resposta) => {
+
+    const nome=requisicao.body.nome;
+    const cpf=requisicao.body.cpf;
+    const telefone=requisicao.body.telefone;
+    const emprestimo=requisicao.body.emprestimo;
+    const devolucao=requisicao.body.devolucao;
+    const livro=requisicao.body.livro;
+         
+    if(!nome || !cpf || !telefone || !emprestimo || !devolucao || !livro) {
+         let html= `  
+            <html lang="pt-br">
+                <head>
+                    <meta charset = "UTF-8">
+                    <title>Formulário de Leitores</title>
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+                </head>
+                <body> 
+                    <div class = "container mt-5"> 
+                        <form method="POST" action="/leitores" class="row g-3">        
+                                <legend><h3>
+                                    Cadastro de Leitores:</h3>
+                                </legend>
+
+                             <div class="col-md-6">
+                                <label for="inputnome" class="form-label">Nome Completo</label>
+                                <input type="text" class="form-control" id="nome" name="nome" value="${nome}">`;
+                   
+                                if(!nome){
+                                    html+= `<div class="alert alert-danger" role="alert">
+                                                Por Favor, insira o nome completo!
+                                            </div>`;
+                                }
+                                html+= `
+                            </div>
+
+                             <div class="col-md-6">
+                                <label for="inputcpf" class="form-label">CPF</label>
+                                <input type="text" class="form-control" id="cpf" name="cpf" value="${cpf}">`;
+                            
+                                if(!cpf){
+                                    html+= `<div class="alert alert-danger" role="alert">
+                                                Por Favor, insira o CPF!
+                                            </div>`;
+                                } 
+                                html+=`
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="inputtelefone" class="form-label">Telefone</label>
+                                <input type="text" class="form-control" id="telefone" name="telefone" value="${telefone}">`;
+                                
+                                if(!telefone){
+                                    html+= `<div class="alert alert-danger" role="alert">
+                                                Por Favor, insira o telefone!
+                                            </div>`;
+                                }
+                                html+=`
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="inputemprestimo" class="form-label">Data de Empréstimo</label>
+                                <input type="date" class="form-control" id="emprestimo" name="emprestimo" value="${emprestimo}">`;
+                                
+                                if(!emprestimo){
+                                    html+= `<div class="alert alert-danger" role="alert">
+                                                Por Favor, insira a data de empréstimo!
+                                            </div>`;
+                                }
+                                html+=`
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="inputdevolucao" class="form-label">Data de Devolução</label>
+                                <input type="date" class="form-control" id="devolucao" name="devolucao" value="${devolucao}">`;
+                                
+                                if(!devolucao){
+                                    html+= `<div class="alert alert-danger" role="alert">
+                                                Por Favor, insira a data de devolução!
+                                            </div>`;
+                                }
+                                html+=`
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="inputlivro" class="form-label">Nome doLivro</label>
+                                <input type="text" class="form-control" id="livro" name="livro" value="${livro}">`;
+                                
+                                if(!livro){
+                                    html+= `<div class="alert alert-danger" role="alert">
+                                                Por Favor, insira o nome do livro!
+                                            </div>`;
+                                }
+                                html+=`
+                                                 
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                            </div>
+                    </form>
+                </div> 
+                
+             </body>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+            </html>`;
+                 
+        resposta.write(html);
+        resposta.end();
+    }
+    else {
+            listaleitores.push(
+                    {
+                        
+                        "nome":nome,
+                        "cpf":cpf,
+                        "telefone":telefone,
+                        "emprestimo":emprestimo,
+                        "devolucao":devolucao,
+                        "livro":livro,
+
+                    }
+             );
+            resposta.redirect("/listaleitores");     
+     }
+    
+});
+app.get("/listaleitores", estaAutenticado,(requisicao, resposta) => {
+    resposta.write(`
+         <html lang="pt-br">
+            <head>
+                <meta charset = "UTF-8">
+                <title>Lista de Leitores</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+            </head>
+            <body>
+                <div class = "container mt-5"> 
+                    <table class="table table-success table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nome do Leitor</th>
+                                <th scope="col">CPF</th>
+                                <th scope="col">Telefone</th>
+                                <th scope="col">Data de Empréstimo</th>
+                                <th scope="col">Data de Devolução</th>
+                                <th scope="col">Livro Emprestado</th>
+                            </tr>
+                        </thead>
+                        <tbody> `);
+                            for(let i=0;i<listaleitores.length;i++){
+                                const leitores =listaleitores[i];
+                                resposta.write(`
+                                    <tr>
+                                        <td>${leitores.nome}</td>
+                                        <td>${leitores.cpf}</td>
+                                        <td>${leitores.telefone}</td>
+                                        <td>${leitores.emprestimo}</td>
+                                        <td>${leitores.devolucao}</td>
+                                        <td>${leitores.livro}</td>
+                                    </tr>`)
+                                <th scope="col">Lista de Leitores</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody> `);
+                            for(let i=0;i<listaleitores.length;i++){
+                                const leitores =listaleitores[i];
+                                resposta.write(`
+                                    <tr>
+                                        <td>${i+1}</td>
+                                        <td>${leitores.nome}</td>
+                                        <td>${leitores.cpf}</td>
+                                        <td>${leitores.telefone}</td>
+                                        <td>${leitores.emprestimo}</td>
+                                        <td>${leitores.devolucao}</td>
+                                        <td>${leitores.livro}</td>
+                                    </tr>`)
+                            }
+                        resposta.write(`    </tbody>
+                                        </table>
+                                        <a href="/leitores" class="btn btn-primary">Adicionar Leitores</a>
                                     </div>     
             </body>
              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
@@ -430,14 +620,13 @@ app.post("/login", (requisicao, resposta) => {
     if(email === emailcorreto && senha === senhacorreta){
         requisicao.session.logado = true;
         const dataUltimoAcesso = new Date();
-        resposta.cookie("ultimoAcesso", dataUltimoAcesso.toLocaleString(),{maxAge:1000 * 60 * 60 * 24 * 30,httpOnly:true});
+        resposta.cookie("ultimoAcesso", dataUltimoAcesso.toLocaleString(),{maxAge:1000 * 60 * 30,httpOnly:true});
         resposta.redirect("/");
     }
     else{
         resposta.write(`
         <html lang="pt-br">
-        <head>
-            <meta charset="UTF-8">
+        <head>            <meta charset="UTF-8">
             <title>Página de Login</title>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
         </head>
